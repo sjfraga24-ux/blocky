@@ -10,6 +10,7 @@ public class Position {
     }
     
     public Position add(int row, int col) {
+        // if(this.col + col)
         return new Position(this.row + row, this.col + col);
     }
     
