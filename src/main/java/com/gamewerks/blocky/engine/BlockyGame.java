@@ -39,6 +39,7 @@ public class BlockyGame {
             break;
         case RIGHT:
             nextPos = activePiece.getPosition().add(0, 1);
+            break;  // added missing break statement
         default:
             throw new IllegalStateException("Unrecognized direction: " + movement.name());
         }
@@ -69,10 +70,11 @@ public class BlockyGame {
     
     public void step() {
         trySpawnBlock();
+        processMovement();  // added movement process into gamecycle
         processGravity();
         processClearedLines();
     }
-    
+
     public boolean[][] getWell() {
         return board.getWell();
     }

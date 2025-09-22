@@ -29,10 +29,10 @@ public class Blocky {
         frame.addKeyListener(new KeyAdapter() {
             public void keyPressed(KeyEvent e) {
                 int code = e.getKeyCode();
-                if (code == e.VK_LEFT) {
-                    game.setDirection(Direction.LEFT);
-                } else if (code == e.VK_RIGHT) {
+                if (code == e.VK_RIGHT) {
                     game.setDirection(Direction.RIGHT);
+                } else if (code == e.VK_LEFT) {
+                    game.setDirection(Direction.LEFT);
                 }
             }
             
