@@ -53,22 +53,30 @@ public class Board {
     }
     
     public void deleteRow(int n) {
-        for (int row = 0; row < n - 1; row++) {
-            for (int col = 0; col < Constants.BOARD_WIDTH; col++) {
-                well[row][col] = well[row+1][col];
-            }
-        }
         for (int col = 0; col < Constants.BOARD_WIDTH; col++) {
             well[n][col] = false;
         }
+
+ 
+        for (int row = n; row < Constants.BOARD_HEIGHT -2; row++) {
+            for (int col = 0; col < Constants.BOARD_WIDTH; col++) {
+                // well[row][col] = well[row-1][col];
+                well[row][col] = well[row+1][col];  
+            }
+        }
+        
+        
+ 
+ 
     }
-    
+   
     public void deleteRows(List rows) {
         for (int i = 0; i < rows.size(); i++) {
             int row = (Integer) rows.get(i);
             deleteRow(row);
         }
     }
+ 
     
     public boolean isCompletedRow(int row) {
         boolean isCompleted = true;
@@ -78,11 +86,11 @@ public class Board {
         return isCompleted;
     }
     
-    public List getCompletedRows() {
-        List completedRows = new LinkedList();
+    public List<Integer> getCompletedRows() {
+        List<Integer> completedRows = new LinkedList();
         for (int row = 0; row < Constants.BOARD_HEIGHT; row++) {
             if (isCompletedRow(row)) {
-                completedRows.add(well[row]);
+                completedRows.add(row);
             }
         }
         return completedRows;
