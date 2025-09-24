@@ -11,6 +11,8 @@ public class BlockyGame {
     private Direction movement;
     
     private int lockCounter;
+
+    private PieceKind[] currentPieces = Piece.shuffle(PieceKind.ALL);
     
     public BlockyGame() {
         board = new Board();
@@ -21,7 +23,17 @@ public class BlockyGame {
     
     private void trySpawnBlock() {
         if (activePiece == null) {
-            activePiece = new Piece(PieceKind.I, new Position(Constants.BOARD_HEIGHT - 1, Constants.BOARD_WIDTH / 2 - 2));
+            if(currentPieces.length == 0){
+                currentPieces = Piece.shuffle(PieceKind.ALL);
+            }
+            PieceKind selectedPiece = currentPieces[currentPieces.length - 1];
+            PieceKind[] newArr = new PieceKind[currentPieces.length - 1];
+            for(int i = 0; i < currentPieces.length - 1; i++){
+                newArr[i] = currentPieces[i];
+            }
+            currentPieces = newArr;
+
+            activePiece = new Piece(selectedPiece, new Position(Constants.BOARD_HEIGHT - 1, Constants.BOARD_WIDTH / 2 - 2));
             if (board.collides(activePiece)) {
                 System.exit(0);
             }

@@ -58,9 +58,8 @@ public class Board {
         }
 
  
-        for (int row = n; row < Constants.BOARD_HEIGHT -2; row++) {
+        for (int row = n; row < Constants.BOARD_HEIGHT -1; row++) {//fixed range of array and how it change well[][]
             for (int col = 0; col < Constants.BOARD_WIDTH; col++) {
-                // well[row][col] = well[row-1][col];
                 well[row][col] = well[row+1][col];  
             }
         }
@@ -86,11 +85,11 @@ public class Board {
         return isCompleted;
     }
     
-    public List<Integer> getCompletedRows() {
+    public List<Integer> getCompletedRows() { //fixed List definition by adding integer
         List<Integer> completedRows = new LinkedList();
         for (int row = 0; row < Constants.BOARD_HEIGHT; row++) {
             if (isCompletedRow(row)) {
-                completedRows.add(row);
+                completedRows.add(row); //fixed parameter input
             }
         }
         return completedRows;

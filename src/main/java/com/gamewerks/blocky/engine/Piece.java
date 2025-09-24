@@ -49,4 +49,17 @@ public class Piece {
             orientation = k < 0 ? 3 : k;
         }
     }
+
+    public static PieceKind[] shuffle(PieceKind[] arr){
+        
+        for(int i = arr.length - 1; i > 0; i--){
+            int rand = (int) Math.floor(Math.random() * (i - 1));
+            PieceKind pieceOne = arr[i];
+            PieceKind pieceTwo = arr[rand];
+            arr[rand] = pieceOne;
+            arr[i] = pieceTwo;
+        }
+
+        return arr;
+    }
 }
